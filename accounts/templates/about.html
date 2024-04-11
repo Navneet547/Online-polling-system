@@ -1,0 +1,22 @@
+{% include 'header.html'%}
+<div class="container text-center  mt-20 ">
+    <h1>About page</h1>
+    <p>W3Schools is optimized for learning and training. <br>
+        Examples might be simplified to improve reading and learning.<br>
+        Tutorials, references, and examples are constantly reviewed to avoid errors,<br>
+        but we cannot warrant full correctness of all content.<br>
+        While using W3Schools, you agree to have read and accepted our</p>
+
+    <h1>SQL JOIN</h1>
+    <p> A JOIN clause is used to combine rows from two or more tables, based on a related column between them.
+
+        SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+        FROM Orders
+        INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;:</p>
+        <p> A JOIN clause is used to combine rows from two or more tables, based on a related column between them.
+
+            SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+            FROM Orders
+            INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;:</p>
+</div>
+{% include 'footer.html'%}

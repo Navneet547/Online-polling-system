@@ -1,0 +1,47 @@
+{% include "header.html" %}
+<div class="container">
+    <div class="row center">
+        <div class="col-md-6 offset-md-3">
+            <h2>Edit poll</h2>
+            {% if messages %}
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endif %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <label for="id_text">Text:</label>
+                <textarea id="id_text" name="text" class="form-control" rows="4" required>{{ poll.text }}</textarea>
+                {% comment %} href="{% url 'poll:add_choice' poll.id %}" {% endcomment %}
+                 <label for="id_active">Active:</label>
+                <input type="checkbox" id="id_active" name="active" {% if poll.active %} checked {% endif %}> <br> <br>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{% url 'poll:poll-delete' poll.id %}" class="btn btn-danger"  role="button" onclick="return confirm('Are you sure to delete the poll?')">Delete</a>
+                {% comment %} <a href="{% url 'poll:poll-details' poll.id %}" class="btn btn-warning"  role="button">Details</a> {% endcomment %}
+            </form>
+
+            <div class="choices">
+                <h2 class="text-center mt-3">Choices</h2>
+                <hr>
+                <ul class="list-group">
+                    {% for choice in poll.choice_set.all %}
+                     {% comment %}  {% endcomment %}
+                    <li class="list-group-item"><a href="{% url 'poll:choice-edit' choice.id %}"><i class="fas fa-pencil-alt"></i></a>&nbsp
+                        {{ choice.choice_text }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}

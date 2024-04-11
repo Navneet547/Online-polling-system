@@ -1,0 +1,17 @@
+{% include 'header.html' %}
+<h1 class="text-center mt-3">Welcome to Our Polling Project</h1>
+<div class="container"  id="home-page" style="height: 300px;"></div>
+<div class="container text-center mt-1">
+    <p>
+        Our polling project allows users to create and participate in polls on various topics. Whether you're
+        interested in gathering opinions, making decisions, or simply engaging with others, our platform provides
+        a convenient way to create and vote on polls.
+    </p>
+    <p>
+        Explore the polls created by our community or create your own poll to share with others. Let your voice
+        be heard and contribute to the collective wisdom of our community.
+    </p>
+    <a href="{% url 'poll:poll-list' %}" class="btn btn-primary btn-lg mt-2">View Polls</a>
+</div>
+
+{% include 'footer.html' %}

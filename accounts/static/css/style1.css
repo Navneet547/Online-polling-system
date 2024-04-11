@@ -1,0 +1,12 @@
+
+#home-page {
+    background-image: url('/static/images/polling.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+}
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}

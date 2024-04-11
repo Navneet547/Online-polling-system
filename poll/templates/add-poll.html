@@ -1,0 +1,42 @@
+{% include "header.html" %}
+<div class="container">
+    <div class="row center">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="mt-4 ">Create New Poll</h2>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="id_text">Text:</label>
+                    <textarea id="id_text" name="text" class="form-control" rows="4" required></textarea>
+
+                    <label for="id_choice1">Choice 1:</label>
+                    <input type="text" id="id_choice1" name="choice1" class="form-control" maxlength="100" minlength="1"
+                        required>
+
+                    <label for="id_choice2">Choice 2:</label>
+                    <input type="text" id="id_choice2" name="choice2" class="form-control" maxlength="100" minlength="1"
+                        required>
+
+                    <label for="id_choice3">Choice 3:</label>
+                    <input type="text" id="id_choice3" name="choice3" class="form-control" maxlength="100" minlength="1"
+                        required>
+
+                    <label for="id_choice4">Choice 4:</label>
+                    <input type="text" id="id_choice4" name="choice4" class="form-control" maxlength="100" minlength="1"
+                        required>
+
+                    <!-- Add more choice fields as needed -->
+
+                    <button type="submit" class="btn btn-primary mt-2">Add Poll</button>
+                    <a class="btn btn-warning mt-2" href="{% url 'poll:poll-list' %}" role="button">Back</a>
+                </form>
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
