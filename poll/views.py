@@ -26,7 +26,7 @@ class Poll_list(View):
             search_term = request.GET['search']
             all_polls = all_polls.filter(text__icontains=search_term)
 
-        paginator = Paginator(all_polls, 6) 
+        paginator = Paginator(all_polls, 4) 
         page = request.GET.get('page')
         polls = paginator.get_page(page)
 
@@ -64,11 +64,8 @@ class Add_poll(View):
 class Poll_Details(View):
     @method_decorator(login_required(login_url='accounts:login'))
     def get(self, request, poll_id, *args, **kwargs):
-        # print("Poll ID:", poll_id)
         poll = get_object_or_404(Poll, id=poll_id)
         if not poll.active:
-            # if poll==None:
-            # return render(request, 'poll_result.html', {'poll': poll})
           return redirect('poll:poll-result', poll_id=poll.id)
 
         loop_count = poll.choice_set.count()
@@ -96,6 +93,7 @@ class Poll_Details(View):
             return redirect("poll:poll-details", poll_id)
     
 class End_Poll(View):
+    @method_decorator(login_required(login_url='accounts:login'))
     def get(self, request, poll_id, *args, **kwargs):
         poll = get_object_or_404(Poll, id=poll_id)
         if request.user != poll.owner:
@@ -109,6 +107,7 @@ class End_Poll(View):
             return render(request, 'poll-list.html', {'poll': poll})
         
 class Poll_Edit(View):
+    @method_decorator(login_required(login_url='accounts:login'))
     def get(self, request,poll_id,*args,**kwargs):
         poll=get_object_or_404(Poll,id=poll_id)
         return render(request,'poll-edit.html',{'poll':poll})
@@ -120,12 +119,15 @@ class Poll_Edit(View):
         return redirect('poll:poll-list')
     
 class Poll_delete(View):
+    @method_decorator(login_required(login_url='accounts:login'))
     def get(self, request,poll_id,*args,**kwargs):
         poll=get_object_or_404(Poll,id=poll_id)
         poll.delete()
+        messages.success(request, f"Poll \"{poll.text}\" is deleted successfully.",extra_tags='alert alert-warning alert-dismissible fade show')
         return redirect('poll:poll-list')
     
 class Choice_edit(View):
+    @method_decorator(login_required(login_url='accounts:login'))
     def get(self, request,choice_id,*args,**kwargs):
         choice = get_object_or_404(Choice, pk=choice_id)
         poll = get_object_or_404(Poll, pk=choice.poll.id)
@@ -152,6 +154,7 @@ class Choice_edit(View):
 
 
 class Poll_result(View):
+    @method_decorator(login_required(login_url='accounts:login'))
     def get(self, request,poll_id,*args,**kwargs):
         # Retrieve the poll object based on the poll_id
         poll = get_object_or_404(Poll, id=poll_id)
