@@ -1,5 +1,8 @@
 **Getting Started**
+
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+**First Download the project by url or download a zip file and extract with your own folder **
 
 **Copy this code and paste into your terminal to install all the Prerequisites**
 
