@@ -1,10 +1,13 @@
 **Getting Started**
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 **Copy this code and paste into your terminal to install all the Prerequisites**
+
 >>pip install -r requirements.txt
+
 **To migrate the database open terminal in project directory and type**
 >>python manage.py makemigrations
 >>python manage.py migrate
+
 **To use admin panel you need to create superuser using this command**
 >>python manage.py createsuperuser
 
